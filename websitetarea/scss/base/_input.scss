@@ -1,0 +1,19 @@
+﻿input {
+    border: 2px solid #e8ebed;
+    border-radius: 5px;
+    box-shadow: none;
+    height: 15px;
+    width: 93%;
+    padding: 8px 12px 9px 12px;
+    margin: 0;
+    font: inherit;
+
+    &:invalid {
+        border: 2px solid red;
+    }
+}
+
+.inputmargin {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}

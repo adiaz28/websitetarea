@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tarea json server</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <style>
+        #container {
+            margin: auto;
+        }
+
+        tr {
+        }
+
+        td {
+            text-align: center;
+        }
+
+        th {
+            width: 200px;
+            margin: 5px;
+            padding: 8px;
+            color: white
+        }
+
+        table {
+            width: 100%;
+            border-color: black;
+        }
+        button {
+            border-radius:5px;
+            padding:5px;
+            color:white
+        }
+        .info {
+            background-color: lightblue;
+            border-color: lightblue;
+        }
+
+        .success {
+            background-color: lightgreen;
+            border-color: lightgreen;
+            
+        }
+        .danger {
+            background-color: red;
+            border-color: red;
+        }
+        .cabecera {
+            background-color: lightsteelblue;
+        }
+    </style>
+
+</head>
+<body>
+
+
+    <h1 class="title">Tarea 2 jsonserver</h1>
+    <button class="info" id="botonAccion" onclick="ejecutarJquery()">Consultar</button>
+    <div id="container">
+        <table>
+            <thead>
+                <tr class="cabecera">
+                    <th>Estado</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody id="ls_productos"></tbody>
+        </table>
+    </div>
+
+
+    <script src="./scripts/jquery.min.js"></script>
+    <script>
+        //< p > Id: " + element.id + " Producto: " + element.producto + " Cantidad: " + element.cantidad + " Estado: " + element.estado +"</p >
+        function ejecutarJquery() {
+            $('#ls_productos').html('');
+            $.get("http://localhost:3000/ciudades", function (data, status) {
+                var contenido = "";
+
+                var icono = "";
+                var clase = "";
+                data.forEach(element => {
+
+                    if (element.estado == "activo") {
+                        icono = "trash-alt";
+                        clase = "danger";
+                    }
+                    else {
+                        icono = "check";
+                        clase = "success";
+                    }
+                    
+
+                    contenido = contenido + '<tr id="' + element.id + '"><td>' + element.estado + '</td><td>' + element.producto + '</td><td>' + element.cantidad + '</td><td><button onclick="AC_Cambiar_Estado(' + element.id + ')" class="boton-estado ' + clase+'" ><i class="fas fa-' + icono+'"></i></button></td></tr>';
+                });
+                $('#ls_productos').append(contenido);
+            });
+
+        }
+
+
+        function AC_Cambiar_Estado(id) {
+
+            var estado = $('#ls_productos #' + id).find('td').eq(0).text();
+            var producto = $('#ls_productos #' + id).find('td').eq(1).text();
+            var cantidad = $('#ls_productos #' + id).find('td').eq(2).text();
+
+            
+            var estado_cambiar = "";
+            if (estado=="activo") {
+                estado_cambiar = "inactivo";
+                icono = "check";
+                clase = "success";
+            }
+            else {
+                estado_cambiar = "activo";
+
+                icono = "trash-alt";
+                clase = "danger";
+
+            }
+
+
+            $.ajax({
+                     method: "PUT",
+                    url: "http://localhost:3000/ciudades/"+id,
+                         data: {
+                             estado: estado_cambiar,
+                             producto: producto,
+                             cantidad: cantidad
+                         }
+                     })
+                    .done(function () {
+
+                        $('#ls_productos #' + id).find('td').eq(0).text(estado_cambiar);
+                        $('#ls_productos #' + id).find('td').eq(3).html('<button class="' + clase+'" onclick="AC_Cambiar_Estado('+ id + ')"><i class="fas fa-' + icono+'"></i></button>');
+                         console.log("Datos actualizados de forma satisfactoria");
+                     })
+                     .fail(function() {
+                         console.log("Error ejecutar el request");
+                     });
+
+
+        }
+    </script>
+
+</body>
+</html >

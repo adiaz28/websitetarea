@@ -25,6 +25,28 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "websitetarea", "websitetare
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "websitetareajsonserver", "websitetareajsonserver\", "{6ACC8664-C41B-4D2A-A662-8C9566FE8C4C}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_61468"
+		Debug.AspNetCompiler.PhysicalPath = "websitetareajsonserver\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61468\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_61468"
+		Release.AspNetCompiler.PhysicalPath = "websitetareajsonserver\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_61468\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "61468"
+		SlnRelativePath = "websitetareajsonserver\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +54,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F1A2BB55-BC38-4DFC-84A1-E05F15F2DD5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F1A2BB55-BC38-4DFC-84A1-E05F15F2DD5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ACC8664-C41B-4D2A-A662-8C9566FE8C4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ACC8664-C41B-4D2A-A662-8C9566FE8C4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
